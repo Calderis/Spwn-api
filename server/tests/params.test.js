@@ -21,7 +21,6 @@ describe('## Param APIs', () => {
   let param = {
     name: 'initial string',
     type: 'initial string',
-    classname: 'initial string',
 
   };
 
@@ -32,9 +31,9 @@ describe('## Param APIs', () => {
         .send(param)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(param.name);
-            expect(res.body.type).to.equal(param.type);
-            expect(res.body.classname).to.equal(param.classname);
+          expect(res.body.name).to.equal(param.name);
+          expect(res.body.type).to.equal(param.type);
+          expect(res.body.classname).to.equal(param.classname);
 
           param = res.body;
           done();
@@ -49,9 +48,9 @@ describe('## Param APIs', () => {
         .get(`/api/params/${param._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(param.name);
-            expect(res.body.type).to.equal(param.type);
-            expect(res.body.classname).to.equal(param.classname);
+          expect(res.body.name).to.equal(param.name);
+          expect(res.body.type).to.equal(param.type);
+          expect(res.body.classname).to.equal(param.classname);
 
           done();
         })
@@ -74,7 +73,6 @@ describe('## Param APIs', () => {
     it('should update param details', (done) => {
       param.name = 'KK';
       param.type = 'KK';
-      param.classname = 'KK';
 
       request(app)
         .put(`/api/params/${param._id}`)
@@ -83,7 +81,6 @@ describe('## Param APIs', () => {
         .then((res) => {
           expect(res.body.name).to.equal('KK');
           expect(res.body.type).to.equal('KK');
-          expect(res.body.classname).to.equal('KK');
 
           done();
         })
@@ -124,7 +121,6 @@ describe('## Param APIs', () => {
         .then((res) => {
           expect(res.body.name).to.equal('KK');
           expect(res.body.type).to.equal('KK');
-          expect(res.body.classname).to.equal('KK');
 
           done();
         })

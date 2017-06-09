@@ -39,18 +39,18 @@ describe('## User APIs', () => {
         .send(user)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.firstname).to.equal(user.firstname);
-            expect(res.body.lastname).to.equal(user.lastname);
-            expect(res.body.pseudo).to.equal(user.pseudo);
-            expect(res.body.email).to.equal(user.email);
-            expect(res.body.password).to.equal(user.password);
-            expect(res.body.image).to.equal(user.image);
-            expect(res.body.github).to.equal(user.github);
-            expect(res.body.stackoverflow).to.equal(user.stackoverflow);
-            expect(res.body.linkedin).to.equal(user.linkedin);
-            expect(res.body.level).to.equal(user.level);
-            expect(res.body.projects).to.equal(user.projects);
-            expect(res.body.favoris).to.equal(user.favoris);
+          expect(res.body.firstname).to.equal(user.firstname);
+          expect(res.body.lastname).to.equal(user.lastname);
+          expect(res.body.pseudo).to.equal(user.pseudo);
+          expect(res.body.email).to.equal(user.email);
+          expect(res.body.password).to.equal(user.password);
+          expect(res.body.image).to.equal(user.image);
+          expect(res.body.github).to.equal(user.github);
+          expect(res.body.stackoverflow).to.equal(user.stackoverflow);
+          expect(res.body.linkedin).to.equal(user.linkedin);
+          expect(res.body.level).to.equal(user.level);
+          expect(res.body.projects).to.equal(user.projects);
+          expect(res.body.favoris).to.equal(user.favoris);
 
           user = res.body;
           done();
@@ -65,18 +65,18 @@ describe('## User APIs', () => {
         .get(`/api/users/${user._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.firstname).to.equal(user.firstname);
-            expect(res.body.lastname).to.equal(user.lastname);
-            expect(res.body.pseudo).to.equal(user.pseudo);
-            expect(res.body.email).to.equal(user.email);
-            expect(res.body.password).to.equal(user.password);
-            expect(res.body.image).to.equal(user.image);
-            expect(res.body.github).to.equal(user.github);
-            expect(res.body.stackoverflow).to.equal(user.stackoverflow);
-            expect(res.body.linkedin).to.equal(user.linkedin);
-            expect(res.body.level).to.equal(user.level);
-            expect(res.body.projects).to.equal(user.projects);
-            expect(res.body.favoris).to.equal(user.favoris);
+          expect(res.body.firstname).to.equal(user.firstname);
+          expect(res.body.lastname).to.equal(user.lastname);
+          expect(res.body.pseudo).to.equal(user.pseudo);
+          expect(res.body.email).to.equal(user.email);
+          expect(res.body.password).to.equal(user.password);
+          expect(res.body.image).to.equal(user.image);
+          expect(res.body.github).to.equal(user.github);
+          expect(res.body.stackoverflow).to.equal(user.stackoverflow);
+          expect(res.body.linkedin).to.equal(user.linkedin);
+          expect(res.body.level).to.equal(user.level);
+          expect(res.body.projects).to.equal(user.projects);
+          expect(res.body.favoris).to.equal(user.favoris);
 
           done();
         })

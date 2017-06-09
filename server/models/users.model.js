@@ -2,27 +2,23 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
-var ProjectSchema = require('./projects.model.js')
-var TemplateSchema = require('./favoris.model.js')
- 
 
 /**
  * User Schema
  */
 const UserSchema = new mongoose.Schema({
-firstname: {type: String}
-lastname: {type: String}
-pseudo: {type: String}
-email: {type: String}
-password: {type: String}
-image: {type: String}
-github: {type: String}
-stackoverflow: {type: String}
-linkedin: {type: String}
-level: {type: String}
-  projects: [{type:Schema.ObjectId, ref: 'Project'}],
-  favoris: [{type:Schema.ObjectId, ref: 'Template'}],
-
+  firstname: String,
+  lastname: String,
+  pseudo: String,
+  email: String,
+  password: String,
+  image: String,
+  github: String,
+  stackoverflow: String,
+  linkedin: String,
+  level: String,
+  projects: Array,
+  favoris: Array,
 
   createdAt: {
     type: Date,
@@ -54,6 +50,9 @@ UserSchema.statics = {
    */
   get(id) {
     return this.findById(id)
+    .populate('Project')
+    .populate('Template')
+
       .exec()
       .then((user) => {
         if (user) {

@@ -4,6 +4,7 @@ import expressJwt from 'express-jwt';
 import paramValidation from '../../config/param-validation';
 import templateCtrl from '../controllers/templates.controller';
 import config from '../../config/config';
+import multipart from'connect-multiparty';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -23,6 +24,10 @@ router.route('/:templateId')
 
   /** DELETE /api/templates/:templateId - Delete template */
   .delete(expressJwt({ secret: config.jwtSecret }), templateCtrl.remove);
+
+router.route('/file')
+/** POST /api/templates/file - Upload template file */
+  .post(validate(paramValidation.uploadFile), multipart(), templateCtrl.uploadTemplate)
 
 /** Load template when API with templateId route parameter is hit */
 router.param('templateId', templateCtrl.load);

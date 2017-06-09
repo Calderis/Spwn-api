@@ -24,10 +24,10 @@ function get(req, res) {
 
 /**
  * Create new project
-    * @property {String} req.body.name - The name of project.
-    * @property {String} req.body.image - The image of project.
-    * @property {Array} req.body.models - The models of project.
-    * @property {Array} req.body.modules - The modules of project.
+  * @property {[object Object]} req.body.name - The name of project.
+  * @property {[object Object]} req.body.image - The image of project.
+  * @property {[object Object]} req.body.models - The models of project.
+  * @property {[object Object]} req.body.modules - The modules of project.
 
  * @returns {Project}
  */
@@ -47,10 +47,10 @@ function create(req, res, next) {
 
 /**
  * Update existing project
-    * @property {String} req.body.name - The name of project.
-    * @property {String} req.body.image - The image of project.
-    * @property {Array} req.body.models - The models of project.
-    * @property {Array} req.body.modules - The modules of project.
+  * @property {[object Object]} req.body.name - The name of project.
+  * @property {[object Object]} req.body.image - The image of project.
+  * @property {[object Object]} req.body.models - The models of project.
+  * @property {[object Object]} req.body.modules - The modules of project.
 
  * @returns {Project}
  */

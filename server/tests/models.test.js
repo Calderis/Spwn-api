@@ -31,9 +31,9 @@ describe('## Model APIs', () => {
         .send(model)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(model.name);
-            expect(res.body.params).to.equal(model.params);
-            expect(res.body.description).to.equal(model.description);
+          expect(res.body.name).to.equal(model.name);
+          expect(res.body.params).to.equal(model.params);
+          expect(res.body.description).to.equal(model.description);
 
           model = res.body;
           done();
@@ -48,9 +48,9 @@ describe('## Model APIs', () => {
         .get(`/api/models/${model._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(model.name);
-            expect(res.body.params).to.equal(model.params);
-            expect(res.body.description).to.equal(model.description);
+          expect(res.body.name).to.equal(model.name);
+          expect(res.body.params).to.equal(model.params);
+          expect(res.body.description).to.equal(model.description);
 
           done();
         })

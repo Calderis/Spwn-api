@@ -2,16 +2,13 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
- 
 
 /**
  * Module Schema
  */
 const ModuleSchema = new mongoose.Schema({
-name: {type: String}
-status: {type: String}
-  template: {type:Schema.ObjectId, ref: 'Template'},
-
+  name: String,
+  template: { type: mongoose.Schema.ObjectId, ref: 'Template' },
 
   createdAt: {
     type: Date,
@@ -43,6 +40,8 @@ ModuleSchema.statics = {
    */
   get(id) {
     return this.findById(id)
+    .populate('Template')
+
       .exec()
       .then((module) => {
         if (module) {

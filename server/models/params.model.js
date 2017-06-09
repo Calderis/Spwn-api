@@ -2,16 +2,14 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
- 
 
 /**
  * Param Schema
  */
 const ParamSchema = new mongoose.Schema({
-name: {type: String}
-type: {type: String}
-classname: {type: String}
-
+  name: String,
+  type: String,
+  classname: Array,
 
   createdAt: {
     type: Date,
@@ -43,6 +41,8 @@ ParamSchema.statics = {
    */
   get(id) {
     return this.findById(id)
+    .populate('')
+
       .exec()
       .then((param) => {
         if (param) {

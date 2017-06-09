@@ -2,17 +2,14 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
-var ParamSchema = require('./params.model.js')
- 
 
 /**
  * Model Schema
  */
 const ModelSchema = new mongoose.Schema({
-name: {type: String}
-  params: [{type:Schema.ObjectId, ref: 'Param'}],
-description: {type: String}
-
+  name: String,
+  params: Array,
+  description: String,
 
   createdAt: {
     type: Date,
@@ -44,6 +41,8 @@ ModelSchema.statics = {
    */
   get(id) {
     return this.findById(id)
+    .populate('Param')
+
       .exec()
       .then((model) => {
         if (model) {

@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
 import httpStatus from 'http-status';
+import APIError from '../helpers/APIError';
 import Template from '../models/templates.model';
 
 /**
@@ -22,21 +25,37 @@ function get(req, res) {
   return res.json(req._template);
 }
 
+function uploadTemplate(req, res, next) {
+  fs.readFile(req.files.template.path, function (err, data) {
+    var newPath = __dirname + "/../../../public/templates/";
+    console.log(newPath);
+    if (!fs.existsSync(newPath)) fs.mkdirSync(newPath);
+    fs.writeFile(newPath + req.files.template.name, data, function (err) {
+      console.log('File uploaded');
+    });
+  });
+  return res.json({});
+}
+
 /**
  * Create new template
-    * @property {String} req.body.name - The name of template.
-    * @property {Boolean} req.body.used - The used of template.
-    * @property {Number} req.body.stared - The stared of template.
-    * @property {Boolean} req.body.indexed - The indexed of template.
-    * @property {Boolean} req.body.validated - The validated of template.
-    * @property {String} req.body.codepath - The codepath of template.
+  * @property {[object Object]} req.body.name - The name of template.
+  * @property {[object Object]} req.body.description - The description of template.
+  * @property {[object Object]} req.body.used - The used of template.
+  * @property {[object Object]} req.body.owner - The owner of template.
+  * @property {[object Object]} req.body.stared - The stared of template.
+  * @property {[object Object]} req.body.indexed - The indexed of template.
+  * @property {[object Object]} req.body.validated - The validated of template.
+  * @property {[object Object]} req.body.codepath - The codepath of template.
 
  * @returns {Template}
  */
 function create(req, res, next) {
   const template = new Template({
     name: req.body.name,
+    description: req.body.description,
     used: req.body.used,
+    owner: req.body.owner,
     stared: req.body.stared,
     indexed: req.body.indexed,
     validated: req.body.validated,
@@ -51,19 +70,23 @@ function create(req, res, next) {
 
 /**
  * Update existing template
-    * @property {String} req.body.name - The name of template.
-    * @property {Boolean} req.body.used - The used of template.
-    * @property {Number} req.body.stared - The stared of template.
-    * @property {Boolean} req.body.indexed - The indexed of template.
-    * @property {Boolean} req.body.validated - The validated of template.
-    * @property {String} req.body.codepath - The codepath of template.
+  * @property {[object Object]} req.body.name - The name of template.
+  * @property {[object Object]} req.body.description - The description of template.
+  * @property {[object Object]} req.body.used - The used of template.
+  * @property {[object Object]} req.body.owner - The owner of template.
+  * @property {[object Object]} req.body.stared - The stared of template.
+  * @property {[object Object]} req.body.indexed - The indexed of template.
+  * @property {[object Object]} req.body.validated - The validated of template.
+  * @property {[object Object]} req.body.codepath - The codepath of template.
 
  * @returns {Template}
  */
 function update(req, res, next) {
   const template = req._template;
   template.name = req.body.name;
+  template.description = req.body.description;
   template.used = req.body.used;
+  template.owner = req.body.owner;
   template.stared = req.body.stared;
   template.indexed = req.body.indexed;
   template.validated = req.body.validated;
@@ -82,12 +105,21 @@ function update(req, res, next) {
  */
 function list(req, res, next) {
   const params = req.query;
+  console.log(req.query);
   const limit = req.query.limit || 50;
   const skip = req.query.skip || 0;
   const sort = parseInt(req.query.sort) || 1;
+  const search = req.query.search || '';
   delete params.limit;
   delete params.skip;
   delete params.sort;
+  params['name'] = {$regex: new RegExp(params.search, "ig")}
+  delete params.search;
+  if(params.owner === undefined){
+    params['indexed'] = true;
+    params['validated'] = true;
+  }
+  console.log(params);
   Template.list({ limit, skip, sort }, params)
     .then(templates => res.json(templates))
     .catch(e => next(e));
@@ -104,4 +136,4 @@ function remove(req, res, next) {
     .catch(e => next(e));
 }
 
-export default { load, get, create, update, list, remove };
+export default { load, get, create, update, list, remove, uploadTemplate };

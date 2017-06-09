@@ -2,19 +2,15 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
-var ModelSchema = require('./models.model.js')
-var ModuleSchema = require('./modules.model.js')
- 
 
 /**
  * Project Schema
  */
 const ProjectSchema = new mongoose.Schema({
-name: {type: String}
-image: {type: String}
-  models: [{type:Schema.ObjectId, ref: 'Model'}],
-  modules: [{type:Schema.ObjectId, ref: 'Module'}],
-
+  name: String,
+  image: String,
+  models: Array,
+  modules: Array,
 
   createdAt: {
     type: Date,
@@ -46,6 +42,9 @@ ProjectSchema.statics = {
    */
   get(id) {
     return this.findById(id)
+    .populate('Model')
+    .populate('Module')
+
       .exec()
       .then((project) => {
         if (project) {

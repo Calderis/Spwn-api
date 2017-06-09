@@ -20,7 +20,8 @@ after((done) => {
 describe('## Template APIs', () => {
   let template = {
     name: 'initial string',
-    stared: 42,
+    description: 'initial string',
+    used: 42,
     codepath: 'initial string',
 
   };
@@ -32,12 +33,14 @@ describe('## Template APIs', () => {
         .send(template)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(template.name);
-            expect(res.body.used).to.equal(template.used);
-            expect(res.body.stared).to.equal(template.stared);
-            expect(res.body.indexed).to.equal(template.indexed);
-            expect(res.body.validated).to.equal(template.validated);
-            expect(res.body.codepath).to.equal(template.codepath);
+          expect(res.body.name).to.equal(template.name);
+          expect(res.body.description).to.equal(template.description);
+          expect(res.body.used).to.equal(template.used);
+          expect(res.body.owner).to.equal(template.owner);
+          expect(res.body.stared).to.equal(template.stared);
+          expect(res.body.indexed).to.equal(template.indexed);
+          expect(res.body.validated).to.equal(template.validated);
+          expect(res.body.codepath).to.equal(template.codepath);
 
           template = res.body;
           done();
@@ -52,12 +55,14 @@ describe('## Template APIs', () => {
         .get(`/api/templates/${template._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(template.name);
-            expect(res.body.used).to.equal(template.used);
-            expect(res.body.stared).to.equal(template.stared);
-            expect(res.body.indexed).to.equal(template.indexed);
-            expect(res.body.validated).to.equal(template.validated);
-            expect(res.body.codepath).to.equal(template.codepath);
+          expect(res.body.name).to.equal(template.name);
+          expect(res.body.description).to.equal(template.description);
+          expect(res.body.used).to.equal(template.used);
+          expect(res.body.owner).to.equal(template.owner);
+          expect(res.body.stared).to.equal(template.stared);
+          expect(res.body.indexed).to.equal(template.indexed);
+          expect(res.body.validated).to.equal(template.validated);
+          expect(res.body.codepath).to.equal(template.codepath);
 
           done();
         })
@@ -79,7 +84,8 @@ describe('## Template APIs', () => {
   describe('# PUT /api/templates/:templateId', () => {
     it('should update template details', (done) => {
       template.name = 'KK';
-      template.stared = 24;
+      template.description = 'KK';
+      template.used = 24;
       template.codepath = 'KK';
 
       request(app)
@@ -88,7 +94,8 @@ describe('## Template APIs', () => {
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body.name).to.equal('KK');
-          expect(res.body.stared).to.equal(24);
+          expect(res.body.description).to.equal('KK');
+          expect(res.body.used).to.equal(24);
           expect(res.body.codepath).to.equal('KK');
 
           done();
@@ -129,7 +136,8 @@ describe('## Template APIs', () => {
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body.name).to.equal('KK');
-          expect(res.body.stared).to.equal(24);
+          expect(res.body.description).to.equal('KK');
+          expect(res.body.used).to.equal(24);
           expect(res.body.codepath).to.equal('KK');
 
           done();

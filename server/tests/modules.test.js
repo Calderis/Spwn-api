@@ -20,7 +20,6 @@ after((done) => {
 describe('## Module APIs', () => {
   let module = {
     name: 'initial string',
-    status: 'initial string',
 
   };
 
@@ -31,9 +30,8 @@ describe('## Module APIs', () => {
         .send(module)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(module.name);
-            expect(res.body.status).to.equal(module.status);
-            expect(res.body.template).to.equal(module.template);
+          expect(res.body.name).to.equal(module.name);
+          expect(res.body.template).to.equal(module.template);
 
           module = res.body;
           done();
@@ -48,9 +46,8 @@ describe('## Module APIs', () => {
         .get(`/api/modules/${module._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(module.name);
-            expect(res.body.status).to.equal(module.status);
-            expect(res.body.template).to.equal(module.template);
+          expect(res.body.name).to.equal(module.name);
+          expect(res.body.template).to.equal(module.template);
 
           done();
         })
@@ -72,7 +69,6 @@ describe('## Module APIs', () => {
   describe('# PUT /api/modules/:moduleId', () => {
     it('should update module details', (done) => {
       module.name = 'KK';
-      module.status = 'KK';
 
       request(app)
         .put(`/api/modules/${module._id}`)
@@ -80,7 +76,6 @@ describe('## Module APIs', () => {
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body.name).to.equal('KK');
-          expect(res.body.status).to.equal('KK');
 
           done();
         })
@@ -120,7 +115,6 @@ describe('## Module APIs', () => {
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body.name).to.equal('KK');
-          expect(res.body.status).to.equal('KK');
 
           done();
         })

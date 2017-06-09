@@ -2,19 +2,19 @@ import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
- 
 
 /**
  * Template Schema
  */
 const TemplateSchema = new mongoose.Schema({
-name: {type: String}
-used: {type: Boolean}
-stared: {type: Number}
-indexed: {type: Boolean}
-validated: {type: Boolean}
-codepath: {type: String}
-
+  name: String,
+  description: String,
+  used: Number,
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  stared: Boolean,
+  indexed: Boolean,
+  validated: Boolean,
+  codepath: String,
 
   createdAt: {
     type: Date,
@@ -46,14 +46,15 @@ TemplateSchema.statics = {
    */
   get(id) {
     return this.findById(id)
-      .exec()
-      .then((template) => {
-        if (template) {
-          return template;
-        }
-        const err = new APIError('No such template exists!', httpStatus.NOT_FOUND);
-        return Promise.reject(err);
-      });
+      .populate('Owner')
+        .exec()
+        .then((template) => {
+          if (template) {
+            return template;
+          }
+          const err = new APIError('No such template exists!', httpStatus.NOT_FOUND);
+          return Promise.reject(err);
+        });
   },
 
   /**

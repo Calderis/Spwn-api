@@ -24,9 +24,9 @@ function get(req, res) {
 
 /**
  * Create new model
-    * @property {String} req.body.name - The name of model.
-    * @property {Array} req.body.params - The params of model.
-    * @property {String} req.body.description - The description of model.
+  * @property {[object Object]} req.body.name - The name of model.
+  * @property {[object Object]} req.body.params - The params of model.
+  * @property {[object Object]} req.body.description - The description of model.
 
  * @returns {Model}
  */
@@ -45,9 +45,9 @@ function create(req, res, next) {
 
 /**
  * Update existing model
-    * @property {String} req.body.name - The name of model.
-    * @property {Array} req.body.params - The params of model.
-    * @property {String} req.body.description - The description of model.
+  * @property {[object Object]} req.body.name - The name of model.
+  * @property {[object Object]} req.body.params - The params of model.
+  * @property {[object Object]} req.body.description - The description of model.
 
  * @returns {Model}
  */

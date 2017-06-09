@@ -24,9 +24,9 @@ function get(req, res) {
 
 /**
  * Create new param
-    * @property {String} req.body.name - The name of param.
-    * @property {String} req.body.type - The type of param.
-    * @property {String} req.body.classname - The classname of param.
+  * @property {[object Object]} req.body.name - The name of param.
+  * @property {[object Object]} req.body.type - The type of param.
+  * @property {[object Object]} req.body.classname - The classname of param.
 
  * @returns {Param}
  */
@@ -45,9 +45,9 @@ function create(req, res, next) {
 
 /**
  * Update existing param
-    * @property {String} req.body.name - The name of param.
-    * @property {String} req.body.type - The type of param.
-    * @property {String} req.body.classname - The classname of param.
+  * @property {[object Object]} req.body.name - The name of param.
+  * @property {[object Object]} req.body.type - The type of param.
+  * @property {[object Object]} req.body.classname - The classname of param.
 
  * @returns {Param}
  */

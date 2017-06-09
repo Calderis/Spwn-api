@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import httpStatus from 'http-status';
 import User from '../models/users.model';
-  import passwordHash from 'password-hash';
+import passwordHash from 'password-hash';
 
 /**
  * Load user and append to req.
@@ -25,18 +25,18 @@ function get(req, res) {
 
 /**
  * Create new user
-    * @property {String} req.body.firstname - The firstname of user.
-    * @property {String} req.body.lastname - The lastname of user.
-    * @property {String} req.body.pseudo - The pseudo of user.
-    * @property {String} req.body.email - The email of user.
-    * @property {String} req.body.password - The password of user.
-    * @property {String} req.body.image - The image of user.
-    * @property {String} req.body.github - The github of user.
-    * @property {String} req.body.stackoverflow - The stackoverflow of user.
-    * @property {String} req.body.linkedin - The linkedin of user.
-    * @property {String} req.body.level - The level of user.
-    * @property {Array} req.body.projects - The projects of user.
-    * @property {Array} req.body.favoris - The favoris of user.
+  * @property {[object Object]} req.body.firstname - The firstname of user.
+  * @property {[object Object]} req.body.lastname - The lastname of user.
+  * @property {[object Object]} req.body.pseudo - The pseudo of user.
+  * @property {[object Object]} req.body.email - The email of user.
+  * @property {[object Object]} req.body.password - The password of user.
+  * @property {[object Object]} req.body.image - The image of user.
+  * @property {[object Object]} req.body.github - The github of user.
+  * @property {[object Object]} req.body.stackoverflow - The stackoverflow of user.
+  * @property {[object Object]} req.body.linkedin - The linkedin of user.
+  * @property {[object Object]} req.body.level - The level of user.
+  * @property {[object Object]} req.body.projects - The projects of user.
+  * @property {[object Object]} req.body.favoris - The favoris of user.
 
  * @returns {User}
  */
@@ -46,7 +46,7 @@ function create(req, res, next) {
     lastname: req.body.lastname,
     pseudo: req.body.pseudo,
     email: req.body.email,
-  password: passwordHash.generate(req.body.password),
+    password: passwordHash.generate(req.body.password),
     image: req.body.image,
     github: req.body.github,
     stackoverflow: req.body.stackoverflow,
@@ -64,18 +64,18 @@ function create(req, res, next) {
 
 /**
  * Update existing user
-    * @property {String} req.body.firstname - The firstname of user.
-    * @property {String} req.body.lastname - The lastname of user.
-    * @property {String} req.body.pseudo - The pseudo of user.
-    * @property {String} req.body.email - The email of user.
-    * @property {String} req.body.password - The password of user.
-    * @property {String} req.body.image - The image of user.
-    * @property {String} req.body.github - The github of user.
-    * @property {String} req.body.stackoverflow - The stackoverflow of user.
-    * @property {String} req.body.linkedin - The linkedin of user.
-    * @property {String} req.body.level - The level of user.
-    * @property {Array} req.body.projects - The projects of user.
-    * @property {Array} req.body.favoris - The favoris of user.
+  * @property {[object Object]} req.body.firstname - The firstname of user.
+  * @property {[object Object]} req.body.lastname - The lastname of user.
+  * @property {[object Object]} req.body.pseudo - The pseudo of user.
+  * @property {[object Object]} req.body.email - The email of user.
+  * @property {[object Object]} req.body.password - The password of user.
+  * @property {[object Object]} req.body.image - The image of user.
+  * @property {[object Object]} req.body.github - The github of user.
+  * @property {[object Object]} req.body.stackoverflow - The stackoverflow of user.
+  * @property {[object Object]} req.body.linkedin - The linkedin of user.
+  * @property {[object Object]} req.body.level - The level of user.
+  * @property {[object Object]} req.body.projects - The projects of user.
+  * @property {[object Object]} req.body.favoris - The favoris of user.
 
  * @returns {User}
  */
@@ -85,7 +85,7 @@ function update(req, res, next) {
   user.lastname = req.body.lastname;
   user.pseudo = req.body.pseudo;
   user.email = req.body.email;
-  user.password = passwordHash.generate(req.body.password);
+    user.password = passwordHash.generate(req.body.password);
   user.image = req.body.image;
   user.github = req.body.github;
   user.stackoverflow = req.body.stackoverflow;

@@ -24,16 +24,14 @@ function get(req, res) {
 
 /**
  * Create new module
-    * @property {String} req.body.name - The name of module.
-    * @property {String} req.body.status - The status of module.
-    * @property {Object} req.body.template - The template of module.
+  * @property {[object Object]} req.body.name - The name of module.
+  * @property {[object Object]} req.body.template - The template of module.
 
  * @returns {Module}
  */
 function create(req, res, next) {
   const module = new Module({
     name: req.body.name,
-    status: req.body.status,
     template: req.body.template,
 
   });
@@ -45,16 +43,14 @@ function create(req, res, next) {
 
 /**
  * Update existing module
-    * @property {String} req.body.name - The name of module.
-    * @property {String} req.body.status - The status of module.
-    * @property {Object} req.body.template - The template of module.
+  * @property {[object Object]} req.body.name - The name of module.
+  * @property {[object Object]} req.body.template - The template of module.
 
  * @returns {Module}
  */
 function update(req, res, next) {
   const module = req._module;
   module.name = req.body.name;
-  module.status = req.body.status;
   module.template = req.body.template;
 
   module.save()

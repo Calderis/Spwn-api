@@ -31,10 +31,10 @@ describe('## Project APIs', () => {
         .send(project)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(project.name);
-            expect(res.body.image).to.equal(project.image);
-            expect(res.body.models).to.equal(project.models);
-            expect(res.body.modules).to.equal(project.modules);
+          expect(res.body.name).to.equal(project.name);
+          expect(res.body.image).to.equal(project.image);
+          expect(res.body.models).to.equal(project.models);
+          expect(res.body.modules).to.equal(project.modules);
 
           project = res.body;
           done();
@@ -49,10 +49,10 @@ describe('## Project APIs', () => {
         .get(`/api/projects/${project._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
-            expect(res.body.name).to.equal(project.name);
-            expect(res.body.image).to.equal(project.image);
-            expect(res.body.models).to.equal(project.models);
-            expect(res.body.modules).to.equal(project.modules);
+          expect(res.body.name).to.equal(project.name);
+          expect(res.body.image).to.equal(project.image);
+          expect(res.body.models).to.equal(project.models);
+          expect(res.body.modules).to.equal(project.modules);
 
           done();
         })
