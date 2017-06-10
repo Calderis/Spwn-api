@@ -27,7 +27,11 @@ router.route('/:templateId')
 
 router.route('/file')
 /** POST /api/templates/file - Upload template file */
-  .post(validate(paramValidation.uploadFile), multipart(), templateCtrl.uploadTemplate)
+  .post(expressJwt({ secret: config.jwtSecret }), validate(paramValidation.uploadFile), multipart(), templateCtrl.uploadTemplate);
+
+router.route('/file/:templateId')
+  /** GET /api/templates/file/:templateId - Download template file */
+  .get(templateCtrl.downloadTemplate);
 
 /** Load template when API with templateId route parameter is hit */
 router.param('templateId', templateCtrl.load);

@@ -37,6 +37,12 @@ function uploadTemplate(req, res, next) {
   return res.json({});
 }
 
+function downloadTemplate(req, res) {
+  var file = __dirname + '/../../../public/templates/' + req._template._id + '.zip';
+  res.download(file); // Set disposition and send it.
+}
+
+
 /**
  * Create new template
   * @property {[object Object]} req.body.name - The name of template.
@@ -136,4 +142,4 @@ function remove(req, res, next) {
     .catch(e => next(e));
 }
 
-export default { load, get, create, update, list, remove, uploadTemplate };
+export default { load, get, create, update, list, remove, uploadTemplate, downloadTemplate };

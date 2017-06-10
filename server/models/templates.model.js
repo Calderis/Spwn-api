@@ -46,7 +46,7 @@ TemplateSchema.statics = {
    */
   get(id) {
     return this.findById(id)
-      .populate('Owner')
+      .populate('owner')
         .exec()
         .then((template) => {
           if (template) {
@@ -65,6 +65,7 @@ TemplateSchema.statics = {
    */
   list({ skip = 0, limit = 50, sort = 1  } = {}, params = {}) {
     return this.find(params)
+      .populate('owner')
       .sort({ createdAt: +sort })
       .skip(+skip)
       .limit(+limit)

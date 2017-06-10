@@ -42,10 +42,6 @@ export default {
       userId: Joi.string().hex().required()
     }
   },
-  // POST /api/templates/file
-  uploadFile: {
-    body: {}
-  },
   // POST /api/projects
   createProject: {
     body: {
@@ -118,6 +114,17 @@ export default {
   updateTemplate: {
     body: {
     },
+    params: {
+      templateId: Joi.string().hex().required()
+    }
+  },
+  // POST /api/templates/file
+  uploadFile: {
+    body: {}
+  },
+  // GET /api/templates/file/:templateId
+  downloadFile: {
+    body: {},
     params: {
       templateId: Joi.string().hex().required()
     }
