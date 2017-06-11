@@ -9,6 +9,7 @@ import APIError from '../helpers/APIError';
 const ProjectSchema = new mongoose.Schema({
   name: String,
   image: String,
+  directory: String,
   models: Array,
   modules: Array,
 

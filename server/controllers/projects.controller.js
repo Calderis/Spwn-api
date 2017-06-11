@@ -35,6 +35,7 @@ function create(req, res, next) {
   const project = new Project({
     name: req.body.name,
     image: req.body.image,
+    directory: req.body.directory,
     models: req.body.models,
     modules: req.body.modules,
 
@@ -58,6 +59,7 @@ function update(req, res, next) {
   const project = req._project;
   project.name = req.body.name;
   project.image = req.body.image;
+  project.directory = req.body.directory;
   project.models = req.body.models;
   project.modules = req.body.modules;
 
